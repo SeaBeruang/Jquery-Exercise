@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            background-color: orange;
+            font-family: 'barlow';
+        }
+        input{
+            border: transparent;
+        }
+        li{
+            color: transparent;
+        }
+        .submission{
+            left: 20%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <form id="myForm" onsubmit="return validate()">
+        <ul>
+            <label>Username (at least 7 characters) : </label>
+            <li>
+                <input type="text" id="uname" >
+            </li>
+        </ul>
+        <ul>
+            <label>Email : </label>
+            <li>
+                <input type="text" id="email" >
+            </li>
+        </ul>
+        <ul>
+            <label>Confirm Email : </label>
+            <li>
+                <input type="text" id="confemail" >
+            </li>
+        </ul>
+        <ul>
+            <label>Password : </label>
+            <li>
+                <input type="password" id="pass" >
+            </li>
+        </ul>
+        <ul>
+            <label>Confirm Password : </label>
+            <li>
+                <input type="password" id="confpass" >
+            </li>
+        </ul>
+        <input type="submit" id="submission">
+    </form>
+    <script>
+
+        function validate() {
+            let formUname = document.getElementById("uname").value;
+            let formEmail = document.getElementById("email").value;
+            let formConfEmail = document.getElementById("confemail").value;
+            let formPass = document.getElementById("pass").value;
+            let formConfPass = document.getElementById("confpass").value;
+            var alertMessage = [];
+            var final = {};
+            var finish = false;
+
+                if(formUname != "" && formUname.length > 6 && formEmail != "" && formConfEmail != "" && formConfEmail == formEmail && formPass != "" && formConfPass == formPass){
+                    alert('succesfully fill form');
+                    return true
+                }
+                else{
+                    do{
+                    if (formUname == "" || formUname == undefined){
+                        alertMessage.push('- Please fill in username!');
+                    }
+                    if (formUname.length < 6){
+                        alertMessage.push('\n- Please make a username with at least 6 characters in it!');
+                    }
+                    if (formEmail == "" || formEmail == undefined){
+                        alertMessage.push('\n- Please fill in email!');
+                    }
+                    if (formConfEmail == "" || formConfEmail == undefined){
+                        alertMessage.push('\n- Please fill in confirmation email!');
+                    }
+                    if (formConfEmail != formEmail){
+                        alertMessage.push('\n- Confirmation email did not match!');
+                    }
+                    if (formPass == "" || formPass == undefined){
+                        alertMessage.push('\n- Please fill in password!');
+                    }
+                    if(formConfPass == "" || formConfPass == undefined){
+                        alertMessage.push('\n- Please fill in confirmation password');
+                    }
+                    if(formConfPass != formPass){
+                        alertMessage.push('\n- Confirmation password did not match!');
+                    }
+                    final.message = alertMessage;
+                    alert(final.message);
+                    console.log(alertMessage);
+                    finish = true;
+                    }while(finish = false)
+                }
+                return false
+            }
+    </script>
+</body>
+</html>
